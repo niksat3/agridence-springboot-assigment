@@ -8,8 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 import java.time.LocalDateTime;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name = "users")
+@Hidden
+@Schema(hidden = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

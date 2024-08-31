@@ -4,6 +4,11 @@ import com.agridence.microservice.Assignment.dto.UserDTO;
 import com.agridence.microservice.Assignment.dto.param.LoginDTO;
 import com.agridence.microservice.Assignment.model.User;
 import com.agridence.microservice.Assignment.service.UserService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
+@Tag(name = "User", description = "User management APIs")
 public class UserController {
     private final UserService userService;
 
@@ -24,12 +30,18 @@ public class UserController {
     }
 
     @PostMapping("/signup")
+    @Operation(summary = "Register a new user", description = "Creates a new user account")
+    @ApiResponse(responseCode = "200", description = "User registered successfully")
+    @ApiResponse(responseCode = "400", description = "Invalid input")
     public ResponseEntity<User> signUp(@RequestBody UserDTO userDTO) {
         User registeredUser = userService.registerUser(userDTO);
         return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
+    @Operation(summary = "User login", description = "Authenticates a user and returns a JWT token")
+    @ApiResponse(responseCode = "200", description = "Login successful")
+    @ApiResponse(responseCode = "401", description = "Invalid credentials")
     public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
         try {
             String token = userService.login(loginDTO);

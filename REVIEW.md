@@ -48,7 +48,13 @@ Follow these steps to run the Assignment application using Docker:
      }
      ```
 
-8. **Stopping the Application**
+8. **Access Swagger UI**
+   - Open a web browser
+   - Navigate to `http://localhost:8086/swagger-ui/index.html`
+   - You should see the Swagger UI interface, which provides an interactive documentation of your API
+   - You can explore the available endpoints, their parameters, and even try them out directly from the Swagger UI
+
+0. **Stopping the Application**
    - Press `Ctrl + C` in the terminal where the application is running
    - Then run: `docker-compose down`
 

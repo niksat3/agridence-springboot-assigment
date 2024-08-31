@@ -2,9 +2,13 @@ package com.agridence.microservice.Assignment.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
 @Table(name = "notes")
+@Hidden
+@Schema(hidden = true)
 public class Note {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
